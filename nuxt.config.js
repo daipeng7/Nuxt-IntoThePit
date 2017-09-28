@@ -1,5 +1,14 @@
 const ExtractTextWebpackPlugin = require( 'extract-text-webpack-plugin' );
 module.exports = {
+    /**
+     * rootDir 应用的根目录，默认值：process.cwd().该设置的限制条件是node_modules必须在改目录中
+     */
+    // rootDir : process.cwd(),
+
+    /**
+     * srcDir 应用的源码目录，默认值：rootDir。可以多应用共用资源，不用限制在node_modules同一路径
+     */
+    // srcDir : process.cwd(),
     head : {
         // title : 'nuxt',
         titleTemplate: '%s',
@@ -42,9 +51,9 @@ module.exports = {
         ]
     },
     /**
-     * Boolean 配置 Nuxt.js 应用是开发模式还是生产模式。该值会被指令修改。
+     * dev Boolean 配置 Nuxt.js 应用是开发模式还是生产模式。该值会被指令修改。如果想自己设置开发服务，可以自己配置一个server.js
      */ 
-    // dev : true,
+    dev : true,
 
     /**
      * env 配置环境变量
@@ -65,7 +74,14 @@ module.exports = {
     /**
      * 生产环境配置
      */
-    build : {
+    // build : {
+        // CSS 编译工具，自身提供了200多个插件用于处理编译css，也可以自己用js写一个.具体想用哪个直接npm查postcss文档
+        // postcss : [
+        //     require('postcss-modules')(),
+        //     require('autoprefixer')({
+        //         browsers: ['last 3 versions']
+        //     })
+        // ],
         // 使用自己配的插件替换Nuxt的配置，nuxt.js中有一个extractCSS属性，但是现在没用
         // plugins : [
         //     new ExtractTextWebpackPlugin({
@@ -73,5 +89,31 @@ module.exports = {
         //         allChunks : true
         //     })
         // ]
-    }
+    // },
+
+    /**
+     * cache 默认值：false。使用的是lru-cache插件更多的配置可以查看npm。该参数是在SSR才有用的。
+     *      max : 默认1000，缓存的插件个数，如果个数1001那么第一个缓存的移除移除
+     *      maxAge : 默认900000，缓存时间，毫秒数
+     */
+    // cache : {
+    //     max : 1000,
+    //     maxAge : 900000
+    // },
+    /**
+     * watchers 首先webpack是自带一个watch参数的，从而实现监控文件并自动打包。但是Nuxt使用的监控文件变化是chokidar(警卫)插件来完成。辅助一些webapck的watchOptions参数。
+     *      chokidar : Object  具体配置项，可以咋npm官网查看
+     *      webpack : 其实就是webpack的watchOptions选项
+     *          aggregateTimeout : 默认300毫秒，一个文件更改后到下一个文件更改之间的延迟时间，如果在这个时间之内则两次更改一起编译
+     *          ignored : String/anymatch  排除那些文件不监控，出了使用字符串，还可以使用anymatch插件构建一个matchers传给ignored
+     *          poll : Boolean/Number 可以指定毫秒数为单位进行轮询检查，如果为true只安默认的时间轮询
+     */ 
+    // watchers : {
+    //     chokidar : {
+    //         // 很多，可以参照npm插件文档按需添加
+    //     },
+    //     webpack : {
+    //         // webpack的watchOptions参数配置
+    //     }
+    // }
 }
