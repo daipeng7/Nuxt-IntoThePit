@@ -1,0 +1,22 @@
+.index-enter, .index-leave-to{
+    font-size: 40px;
+    color: red;
+}
+.index-enter-active , .index-leave-active {
+    transition: all 1.5s;
+}
+.index-enter-to, .index-leave{
+    font-size: 16px;
+    color: blue;
+}
+.users-id-enter, .users-id-leave-to{
+    font-size: 40px;
+    color: red;
+}
+.users-id-enter-active , .users-id-leave-active {
+    transition: all 1.5s;
+}
+.users-id-enter-to, .users-id-leave{
+    font-size: 16px;
+    color: blue;
+}

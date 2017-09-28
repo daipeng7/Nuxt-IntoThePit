@@ -1,0 +1,9 @@
+.test-enter, .test-leave-to{
+    opacity: 0;
+}
+.test-enter-active, .test-leave-active{
+    opacity: 0.5;
+}
+.test-enter-to, .test-leave{
+    opacity: 1;
+}
