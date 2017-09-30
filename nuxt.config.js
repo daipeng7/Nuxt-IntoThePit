@@ -39,7 +39,8 @@ module.exports = {
     /**
      * 抽离style
      * 1、与head中的link属性不同的地方在于，使用css属性的是assets中的会进行便于，在link引用的不能编译，所以放在static中，static中的文件启动Nuxt后会复制到根路径'/'下.但是static下的内容是没有在HMR管理下的
-     * 2、可以修改\node_modules\_nuxt@1.0.0-rc11@nuxt\dist\nuxt.js中的配置extractCSS，但是试了下没用，所以可以使用build中plugins进行替换
+     * 2、可以build中的配置extractCSS为true.
+     * 3、所以可以使用build中plugins进行替换
      */ 
     css : [
         './assets/css/normalize.css',
@@ -75,6 +76,15 @@ module.exports = {
      * 生产环境配置
      */
     // build : {
+        /**
+         * analyze 包信息可视化plugin，Boolean / Object  默认false（都一样会展示）,使用的webpack-bundle-analyzer插件，用于检查包的信息，包括大小、地址、gzip等，自己配的话可以查看npm。
+         * 在nuxt.js中config.plugins.push(new webpackBundleAnalyzer.BundleAnalyzerPlugin(Object.assign({}, this.options.build.analyze)));
+         */ 
+        analyze : true,
+        // 针对js、vue的babel配置
+        // babel : {
+        //     presets : []
+        // },
         // CSS 编译工具，自身提供了200多个插件用于处理编译css，也可以自己用js写一个.具体想用哪个直接npm查postcss文档
         // postcss : [
         //     require('postcss-modules')(),

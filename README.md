@@ -179,3 +179,16 @@
 			        // 在nuxt添加它的中间件堆栈之前。我们可以使用它来注册定制服务器端中间件。
 			    })
 			})
+
+## Module Container ##
+
+Source [core/module.js](https://github.com/nuxt/nuxt.js/blob/dev/lib/core/module.js)  
+
+所有的模块都会在该实例中被操作处理，相当于除了在congfig中能够配置module，在这儿也可以操作，具体暴露的方法如下：
+
+| name              |   params           | description                                 |
+| ------------------|:------------------:|:--------------------------------------------|
+| addVendor(vendor) | ['module']         |添加到配置中的options.build.vendor项           |
+| addTemplate(tpl)  | string<br>{src,optios,filename}|添加到配置中的options.build.templates项   |
+| close         | -                  |nuxt关闭是触发                                 |
+| listen        | {server,host,port} |Nuxt内部服务器开始监听。(使用nuxt启动或nuxt dev)  |
